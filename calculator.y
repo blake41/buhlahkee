@@ -9,7 +9,7 @@
 %% 
 
 program: 
-        program expr '\n' { printf("%d\n", $2); } 
+        expr '\n' { printf("%d\n", $1); } 
         | 
         ; 
 expr: 
