@@ -10,8 +10,11 @@
           yylval = atoi(yytext); 
           return INTEGER; 
         } 
+[+] { return ADD;
+     }
 
-[-+\n] return *yytext; 
+[-\n] { return *yytext; 
+      }  
 
 [ \t] ; /* skip whitespace */ 
 

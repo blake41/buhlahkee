@@ -1,10 +1,12 @@
 %{ 
-  #include <stdio.h> 
+  #include <stdio.h>
+  /* this seems to be superflous, but does get rid of a compiler warning, this function comes with the flex library */
   int yylex(void); 
   void yyerror(char *); 
 %}
 
 %token INTEGER 
+%token ADD
 
 %% 
 
@@ -14,7 +16,7 @@ program:
         ; 
 expr: 
         INTEGER { $$ = $1; } 
-        | expr '+' expr { $$ = $1 + $3; } 
+        | expr ADD expr { $$ = $1 + $3; } 
         | expr '-' expr { $$ = $1 - $3; } 
         ;
 
