@@ -1,29 +1,36 @@
+%token INTEGER VARIABLE
+%left '+' '-'
+%left '*' '/'
+
 %{ 
   #include <stdio.h>
   /* this seems to be superflous, but does get rid of a compiler warning, this function comes with the flex library */
+  void yyerror(char *);
   int yylex(void); 
-  void yyerror(char *); 
+  int sym[26];
 %}
-
-%token INTEGER 
-%token ADD
 
 %% 
 
-program: 
-        expr '\n' { printf("%d\n", $1); } 
-        | 
-        ; 
+program:
+        program statement '\n'
+        |
+        ;
+
+statement:
+          expr                { printf("%d\n", $1); }
+          | VARIABLE "=" expr { sym[$1] = $3; }
+          ;
+
 expr: 
-        INTEGER { $$ = $1; } 
-        | expr ADD expr { $$ = $1 + $3; } 
-        | expr '-' expr { $$ = $1 - $3; } 
+        INTEGER 
+        | VARIABLE            { $$ = sym[$1]; }
         ;
 
 %%
 
 void yyerror(char *s) { 
-  fprintf(stderr, "%s\n", s); 
+  fprintf(stderr, "%s\n", s);
 } 
 
 int main(void) { 

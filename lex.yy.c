@@ -371,7 +371,7 @@ struct yy_trans_info
 	};
 static yyconst flex_int16_t yy_accept[12] =
     {   0,
-        0,    0,    7,    5,    4,    3,    2,    3,    1,    1,
+        0,    0,    7,    5,    4,    3,    3,    2,    1,    2,
         0
     } ;
 
@@ -380,17 +380,17 @@ static yyconst flex_int32_t yy_ec[256] =
         1,    1,    1,    1,    1,    1,    1,    1,    2,    3,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    2,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    4,    1,    5,    1,    1,    6,    6,    6,
-        6,    6,    6,    6,    6,    6,    6,    1,    1,    1,
+        1,    2,    1,    1,    1,    1,    1,    1,    1,    4,
+        4,    4,    4,    1,    4,    1,    4,    5,    5,    5,
+        5,    5,    5,    5,    5,    5,    5,    1,    1,    1,
+        4,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
+        1,    1,    1,    1,    1,    1,    6,    6,    6,    6,
 
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
+        6,    6,    6,    6,    6,    6,    6,    6,    6,    6,
+        6,    6,    6,    6,    6,    6,    6,    6,    6,    6,
+        6,    6,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
@@ -409,18 +409,18 @@ static yyconst flex_int32_t yy_ec[256] =
 
 static yyconst flex_int32_t yy_meta[7] =
     {   0,
-        1,    1,    1,    1,    1,    2
+        1,    1,    1,    1,    2,    1
     } ;
 
 static yyconst flex_int16_t yy_base[13] =
     {   0,
-        0,    0,    8,    9,    9,    9,    9,    9,    0,    0,
+        0,    0,    8,    9,    9,    9,    9,    0,    9,    0,
         9,    5
     } ;
 
 static yyconst flex_int16_t yy_def[13] =
     {   0,
-       11,    1,   11,   11,   11,   11,   11,   11,   12,   12,
+       11,    1,   11,   11,   11,   11,   11,   12,   11,   12,
         0,   11
     } ;
 
@@ -639,7 +639,7 @@ YY_DECL
     
 #line 7 "calculator.l"
 
-
+  /* variables */
 #line 644 "lex.yy.c"
 
 	if ( !(yy_init) )
@@ -726,40 +726,45 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 YY_RULE_SETUP
 #line 9 "calculator.l"
+{
+                yylval = *yytext - 'a';
+                return VARIABLE;
+            }
+	YY_BREAK
+/* integers */
+case 2:
+YY_RULE_SETUP
+#line 15 "calculator.l"
 { 
           yylval = atoi(yytext); 
           return INTEGER; 
-        } 
+        }
 	YY_BREAK
-case 2:
-YY_RULE_SETUP
-#line 13 "calculator.l"
-{ return ADD;
-     }
-	YY_BREAK
+/* operators */
 case 3:
 /* rule 3 can match eol */
 YY_RULE_SETUP
-#line 16 "calculator.l"
-{ return *yytext; 
-      }  
+#line 21 "calculator.l"
+{ return *yytext; }  
 	YY_BREAK
+/* skip whitespace */
 case 4:
 YY_RULE_SETUP
-#line 19 "calculator.l"
-; /* skip whitespace */ 
+#line 24 "calculator.l"
+;
 	YY_BREAK
+/* anything else is an error */
 case 5:
 YY_RULE_SETUP
-#line 21 "calculator.l"
+#line 27 "calculator.l"
 yyerror("invalid character"); 
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 23 "calculator.l"
+#line 29 "calculator.l"
 ECHO;
 	YY_BREAK
-#line 763 "lex.yy.c"
+#line 768 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1756,7 +1761,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 23 "calculator.l"
+#line 29 "calculator.l"
 
 
 

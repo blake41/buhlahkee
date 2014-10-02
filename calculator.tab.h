@@ -40,12 +40,12 @@
       know about them.  */
    enum yytokentype {
      INTEGER = 258,
-     ADD = 259
+     VARIABLE = 259
    };
 #endif
 /* Tokens.  */
 #define INTEGER 258
-#define ADD 259
+#define VARIABLE 259
 
 
 
