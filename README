@@ -1,7 +1,0 @@
-To get this shit to work
-bison -d calculator.y
-flex calculator.l
-cc -o calculator calculator.tab.c lex.yy.c -lfl -L/usr/local/opt/flex/lib
-#this produces calculator
-./calculator
-2 + 3
